@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async () => {
       products,
       fields,
     },
-    revalidate: 10,
+    revalidate: 100,
   };
 };
 

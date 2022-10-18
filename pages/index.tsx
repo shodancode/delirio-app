@@ -9,7 +9,6 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
-import ProductItem from "../components/ProductItem";
 import Layout from "../components/layout";
 import category from "../utils/category";
 import Hero from "../components/hero";

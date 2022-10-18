@@ -2,8 +2,8 @@ import { extendTheme } from '@chakra-ui/react';
 
 export const theme = extendTheme({
   fonts: {
-    body: 'Josefin Sans, sans-serif',
-    heading: 'Josefin Sans, sans-serif',
+    body: 'Poppins, sans-serif',
+    heading: 'Raleway, sans-serif',
   },
   colors: {
     discord: '#7289da',

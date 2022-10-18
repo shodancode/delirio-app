@@ -126,7 +126,7 @@ export default function WithSubnavigation() {
               <HStack
                 as={"nav"}
                 spacing={4}
-                display={{ base: "none", md: "flex" }}
+                display={{ base: "none", md: "none" }}
               >
                 {Enlace.map(({ name, path }) => (
                   <NavLink key={path} path={path}>

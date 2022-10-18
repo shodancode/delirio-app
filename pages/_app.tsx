@@ -17,8 +17,14 @@ function MyApp({ Component, pageProps }) {
         <title>Licoreria - Delirio</title>
         <meta content="initial-scale=1.0, width=device-width" name="viewport" />
         <meta content="Deliro" name="author" />
-        <meta content="Delirio" name="copyright" />
+        <meta content="Delirio" name="copyright"/>
         <link rel="icon" href="/favicon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <ChakraProvider theme={theme}>
         <StoreProvider>
