@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -13,24 +13,16 @@ import {
   useColorMode,
   HStack,
   Container,
-  VisuallyHidden,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-  MoonIcon,
-  SunIcon,
-} from "@chakra-ui/icons";
-import { BsCartDashFill} from "react-icons/bs";
+import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { BsCartDashFill } from "react-icons/bs";
 import NextLink from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { Store } from '../utils/Store'
+import { Store } from "../utils/Store";
 import Enlace from "../utils/enlaces";
 
 const NavLink = ({ children, path }: { children: ReactNode; path: string }) => (
-
-
   <Box
     px={2}
     py={1}
@@ -57,16 +49,16 @@ export default function WithSubnavigation() {
   const linkColor = useColorModeValue("gray.700", "gray.200");
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const {state, dispatch} = useContext(Store)
-  const router = useRouter()
+  const { state, dispatch } = useContext(Store);
+  const router = useRouter();
 
-  const {cart}=state
+  const { cart } = state;
 
-  const [cartItemsCount, setcartItemsCount] = useState(0)
+  const [cartItemsCount, setcartItemsCount] = useState(0);
 
-  useEffect(()=>{
-    setcartItemsCount(cart.cartItems.reduce((a, c ) => a + c.quantity, 0))
-  },[cart.cartItems])
+  useEffect(() => {
+    setcartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
 
   return (
     <Box>
@@ -91,14 +83,16 @@ export default function WithSubnavigation() {
           <Flex
             flex={{ base: "0", md: "auto" }}
             display={{ base: "flex", md: "none" }}
-          ><Tooltip label="Menu" placement="bottom">
-            <IconButton
-              size={"md"}
-              onClick={onToggle}
-              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-              aria-label={"Open Menu"}
-              display={{ md: "none" }}
-            /></Tooltip>
+          >
+            <Tooltip label="Menu" placement="bottom">
+              <IconButton
+                size={"md"}
+                onClick={onToggle}
+                icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                aria-label={"Open Menu"}
+                display={{ md: "none" }}
+              />
+            </Tooltip>
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
             <HStack spacing={8} alignItems={"center"}>
@@ -160,26 +154,36 @@ export default function WithSubnavigation() {
               justify={{ base: "end", md: "end" }}
             >
               <Tooltip label="Cambiar tema" placement="bottom">
-              <Button onClick={toggleColorMode}>
-                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              </Button>
+                <Button onClick={toggleColorMode}>
+                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                </Button>
               </Tooltip>
-              <Tooltip label="Carrito" placement="bottom">
-              <Button onClick={() => router.push('/cart')} p={4} >
-              <BsCartDashFill />
-              
-                <Flex     
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                }}
-              >
-                {cartItemsCount ? cartItemsCount : <span></span> }
-              </Flex>
-             
-              </Button>
-              </Tooltip>
+              {cartItemsCount > 0 && (
+                <Tooltip label="Carrito" placement="bottom">
+                  <Button onClick={() => router.push("/cart")} p={4}>
+                    <BsCartDashFill />
+
+                    <Flex
+                      borderRadius="full"
+                      justify="center"
+                      align="center"
+                      bg={useColorModeValue("teal.500", "teal.400")}
+                      style={{
+                        position: "absolute",
+                        width: "1.3rem",
+                        height: "1.3rem",
+                        color: "white",
+                        fontSize: "12px",
+                        top: 0,
+                        right: 0,
+                        transform: "translate(15%, 5%)",
+                      }}
+                    >
+                      {cartItemsCount ? cartItemsCount : <span></span>}
+                    </Flex>
+                  </Button>
+                </Tooltip>
+              )}
             </Stack>
           </Flex>
         </Container>

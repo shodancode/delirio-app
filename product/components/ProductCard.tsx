@@ -1,47 +1,56 @@
-import React, { useContext } from 'react'
-import Router, {useRouter} from 'next/router'
-import {Stack, Button, Text, Image} from "@chakra-ui/react";
+import React, { useContext } from "react";
+import Router, { useRouter } from "next/router";
+import {
+  Stack,
+  Button,
+  Text,
+  Image,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
-import {parseCurrency} from "../../utils/currency";
-import {CartItem} from "../../cart/types";
-import {Product} from "../types";
+import { parseCurrency } from "../../utils/currency";
+import { CartItem } from "../../cart/types";
+import { Product } from "../types";
 import CartItemDrawer from "../../cart/components/CartItemDrawer";
-import {Store} from '../../utils/Store'
+import { Store } from "../../utils/Store";
 
 interface Props {
   product: Product;
   onAdd: (product: Product) => void;
 }
 
-const ProductCard: React.FC<Props> = ({product, onAdd}) => {
+const ProductCard: React.FC<Props> = ({ product, onAdd }) => {
   const [isModalOpen, toggleModal] = React.useState(false);
-  const cartItem = React.useMemo<CartItem>(() => ({...product, quantity: 1}), [product]);
-   // inicializar el estado
-   const {state, dispatch} = useContext(Store)
-   const productos = product.id
+  const cartItem = React.useMemo<CartItem>(
+    () => ({ ...product, quantity: 1 }),
+    [product]
+  );
+  // inicializar el estado
+  const { state, dispatch } = useContext(Store);
+  const productos = product.id;
 
-   if(!productos){
-       return <div>productos no encontrados</div>
-   }
+  if (!productos) {
+    return <div>productos no encontrados</div>;
+  }
 
-   // funcion para agregar al carrito
-   // donde enviamos a guardar en nuestra variable de estado global
-   const addToCartHandler = ()=>{
-     const existItem = state.cart.cartItems.find(x => x.id === product.id)
-     const quantity = existItem ?  existItem.quantity + 1 : 1
+  // funcion para agregar al carrito
+  // donde enviamos a guardar en nuestra variable de estado global
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((x) => x.id === product.id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
 
-     dispatch({type : 'CARD_ADD_ITEM', payload: {...product, quantity}})
-   }
-
+    dispatch({ type: "CARD_ADD_ITEM", payload: { ...product, quantity } });
+  };
 
   return (
     <>
       <Stack
         key={product.id}
         alignItems="center"
-        borderColor="gray.300"
-        borderRadius="md"
-        borderWidth={1}
+        bg={useColorModeValue("white", "gray.800")}
+        boxShadow={"md"}
+        rounded={"lg"}
+        p={1}
         data-testid="product"
         direction="row"
         justifyContent="space-between"
@@ -51,12 +60,12 @@ const ProductCard: React.FC<Props> = ({product, onAdd}) => {
           <Image
             backgroundColor="white"
             borderRadius="md"
-            height={{base: 24, sm: 36}}
+            height={{ base: 24, sm: 36 }}
             loading="lazy"
-            minWidth={{base: 24, sm: 36}}
+            minWidth={{ base: 24, sm: 36 }}
             objectFit="contain"
             src={product.image}
-            width={{base: 24, sm: 36}}
+            width={{ base: 24, sm: 36 }}
           />
           <Stack justifyContent="space-between" spacing={1} width="100%">
             <Stack spacing={1}>
@@ -68,18 +77,19 @@ const ProductCard: React.FC<Props> = ({product, onAdd}) => {
                 Stock: {product.stock}
               </Text>
             </Stack>
-            <Stack alignItems="flex-end" direction="row" justifyContent="space-between">
-              <Text as='del' color="gray.500" fontSize="sm" fontWeight="500">
+            <Stack
+              alignItems="flex-end"
+              direction="row"
+              justifyContent="space-between"
+            >
+              <Text as="del" color="gray.500" fontSize="sm" fontWeight="500">
                 {parseCurrency(product.highprice)}
               </Text>
-              <Text  color="teal.500" fontSize="sm" fontWeight="500">
+              <Text color="teal.500" fontSize="sm" fontWeight="500">
                 {parseCurrency(product.price)}
               </Text>
-  
-              <Button
-                size="xs"
-                onClick={addToCartHandler}
-              >
+
+              <Button size="xs" colorScheme={"teal"} onClick={addToCartHandler}>
                 Agregar
               </Button>
             </Stack>

@@ -1,6 +1,14 @@
 import * as React from "react";
 import NextLink from "next/link";
-import { Flex, Grid, Heading, Image, Stack, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Stack,
+  Button,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import ProductItem from "../components/ProductItem";
 import Layout from "../components/layout";
 import category from "../utils/category";
@@ -24,14 +32,14 @@ export default function Home() {
           {category.categorias.map((categorias) => (
             <Flex
               key={categorias.id}
-              borderColor="gray.300"
-              borderRadius="md"
-              borderWidth={1}
+              borderRadius="lg"
               padding={2}
+              bg={useColorModeValue("white", "gray.900")}
+              boxShadow={"xl"}
             >
               <NextLink href={categorias.href}>
                 <Stack width="100%" align="center">
-                  <Image src={categorias.images}></Image>
+                  <Image borderRadius="lg" src={categorias.images}></Image>
                   <Button colorScheme="teal" variant="solid" width="100%">
                     {categorias.name}
                   </Button>

@@ -81,21 +81,30 @@ export default function Cart() {
               <Thead>
                 <Tr>
                   <Th scope="col">Producto</Th>
-
                   <Th scope="col">Cantidad</Th>
                   <Th scope="col">Precio</Th>
-                  <Th scope="col">Accion</Th>
+                  <Th scope="col">Acción</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 {cartItems.map((item) => (
                   <Tr key={item.id}>
                     <Td>
-                      <Image src={item.image} width={70} height={70} alt="" />
+                      <Image
+                        borderRadius="md"
+                        src={item.image}
+                        width={70}
+                        height={70}
+                        alt={item.title}
+                      />
+                      <Text textAlign={"center"} mt={2} fontSize={"15px"}>
+                        {item.category}
+                      </Text>
                     </Td>
 
                     <Td>
                       <Select
+                        size="sm"
                         value={item.quantity}
                         onChange={(e) =>
                           updateCartHandler(item, e.target.value)
@@ -131,7 +140,9 @@ export default function Cart() {
                 size={"md"}
               >
                 Total: ({cartItems.reduce((a, c) => a + c.quantity, 0)}) :
-                {parseCurrency(cartItems.reduce((a, c) => a + c.quantity * c.price, 0))}
+                {parseCurrency(
+                  cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+                )}
               </Heading>
             </Stack>
             <Stack>
