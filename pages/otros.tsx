@@ -1,11 +1,11 @@
 import * as React from "react";
-import {GetStaticProps} from "next";
+import { GetStaticProps } from "next";
 
-import {Product} from "../product/types";
+import { Product } from "../product/types";
 import productApi from "../product/api";
 import cartApi from "../cart/api";
 import StoreScreen from "../product/screens/Store";
-import {Field} from "../cart/types";
+import { Field } from "../cart/types";
 import CartProvider from "../cart/context";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
@@ -15,15 +15,18 @@ interface Props {
   fields: Field[];
 }
 
-const IndexRoute: React.FC<Props> = ({products, fields}) => {
+const IndexRoute: React.FC<Props> = ({ products, fields }) => {
   return (
     <Layout title={"Otros"}>
-      <Hero/>
-    <CartProvider fields={fields}>
-      <StoreScreen fields={fields} products={products.filter(
-        (products) => products.category === "otros"
-      )} />
-    </CartProvider>
+      <Hero />
+      <CartProvider fields={fields}>
+        <StoreScreen
+          fields={fields}
+          products={products.filter(
+            (products) => products.category === "otros"
+          )}
+        />
+      </CartProvider>
     </Layout>
   );
 };

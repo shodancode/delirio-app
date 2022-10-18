@@ -19,7 +19,7 @@ import {
   Image,
   Box,
 } from "@chakra-ui/react";
-import {DeleteIcon} from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import Layout from "../components/layout";
 import { Store } from "../utils/Store";
 import { parseCurrency } from "../utils/currency";
@@ -31,17 +31,18 @@ export default function Cart() {
   } = state;
 
   const message = cartItems
-  .reduce(
-    (message, product) =>
-      message.concat(`* ${product.title} - ${parseCurrency(product.price)}\n`),
-    ""
-  )
-  .concat(
-    `\nTotal: ${parseCurrency(
-      
-      cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
-    )}`
-  );
+    .reduce(
+      (message, product) =>
+        message.concat(
+          `* ${product.title} - ${parseCurrency(product.price)}\n`
+        ),
+      ""
+    )
+    .concat(
+      `\nTotal: ${parseCurrency(
+        cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+      )}`
+    );
 
   const removeCartHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
@@ -76,11 +77,11 @@ export default function Cart() {
           </Stack>
         ) : (
           <TableContainer>
-            <Table size={"sm"} variant='striped' >
+            <Table size={"sm"} variant="striped">
               <Thead>
                 <Tr>
                   <Th scope="col">Producto</Th>
-                
+
                   <Th scope="col">Cantidad</Th>
                   <Th scope="col">Precio</Th>
                   <Th scope="col">Accion</Th>
@@ -91,9 +92,8 @@ export default function Cart() {
                   <Tr key={item.id}>
                     <Td>
                       <Image src={item.image} width={70} height={70} alt="" />
-                      
                     </Td>
-                    
+
                     <Td>
                       <Select
                         value={item.quantity}
@@ -124,18 +124,25 @@ export default function Cart() {
             </Table>
 
             <Stack>
-              <Heading textAlign={"center"} textColor="GrayText" m={5} size={"md"}>
+              <Heading
+                textAlign={"center"}
+                textColor="GrayText"
+                m={5}
+                size={"md"}
+              >
                 Total: ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : S/
                 {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
               </Heading>
             </Stack>
             <Stack>
-            <Button
+              <Button
                 isExternal
                 as={Link}
                 colorScheme="whatsapp"
                 data-testid="complete-order"
-                href={`https://api.whatsapp.com/send?phone=51913006451&text=Buen%20d%C3%ADa%2C%20*Delirio%20%7C%20Licorer%C3%ADa*%2C%20%0A%0ADeseo%20adquirir%20los%20siguientes%20productos%3A%0A%0A${encodeURIComponent(message)}`}
+                href={`https://api.whatsapp.com/send?phone=51913006451&text=Buen%20d%C3%ADa%2C%20*Delirio%20%7C%20Licorer%C3%ADa*%2C%20%0A%0ADeseo%20adquirir%20los%20siguientes%20productos%3A%0A%0A${encodeURIComponent(
+                  message
+                )}`}
                 leftIcon={
                   <Image src="https://icongr.am/fontawesome/whatsapp.svg?size=24&color=ffffff" />
                 }
@@ -144,7 +151,7 @@ export default function Cart() {
               >
                 Completar pedido
               </Button>
-                </Stack>
+            </Stack>
           </TableContainer>
         )}
       </Stack>
