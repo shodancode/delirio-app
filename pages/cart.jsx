@@ -130,7 +130,7 @@ export default function Cart() {
                 m={5}
                 size={"md"}
               >
-                Total: ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : S/
+                Total: ({cartItems.reduce((a, c) => a + c.quantity, 0)}) :
                 {parseCurrency(cartItems.reduce((a, c) => a + c.quantity * c.price, 0))}
               </Heading>
             </Stack>
