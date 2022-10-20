@@ -86,6 +86,7 @@ export default function WithSubnavigation() {
           >
             <Tooltip label="Menu" placement="bottom">
               <IconButton
+                variant="ghost"
                 size={"md"}
                 onClick={onToggle}
                 icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -154,13 +155,17 @@ export default function WithSubnavigation() {
               justify={{ base: "end", md: "end" }}
             >
               <Tooltip label="Cambiar tema" placement="bottom">
-                <Button onClick={toggleColorMode}>
+                <Button variant="ghost" onClick={toggleColorMode}>
                   {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
               </Tooltip>
               {cartItemsCount > 0 && (
                 <Tooltip label="Carrito" placement="bottom">
-                  <Button onClick={() => router.push("/cart")} p={4}>
+                  <Button
+                    variant="ghost"
+                    onClick={() => router.push("/cart")}
+                    p={4}
+                  >
                     <BsCartDashFill />
 
                     <Flex
