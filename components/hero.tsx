@@ -12,7 +12,7 @@ function hero() {
   return (
     <>
      
-        <Stack spacing={8} mt={45}>
+        <Stack spacing={8}>
           <Stack marginBottom={4} spacing={4}>
             {/* <Slider {...settings} ref={(slider) => setSlider(slider)}>
               {cards.map((url, index) => (
@@ -48,9 +48,9 @@ function hero() {
               >
                 <Image
                   borderRadius={9999}
-                  height={{ base: 24, sm: 32 }}
+                  height={{ base: 36, sm: 36 }}
                   src={INFORMATION.avatar}
-                  width={{ base: 24, sm: 32 }}
+                  width={{ base: 36, sm: 36 }}
                 />
               </Box>
               <Stack

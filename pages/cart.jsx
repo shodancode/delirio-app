@@ -151,7 +151,7 @@ export default function Cart() {
                 as={Link}
                 colorScheme="whatsapp"
                 data-testid="complete-order"
-                href={`https://api.whatsapp.com/send?phone=51913006451&text=Buen%20d%C3%ADa%2C%20*Delirio%20%7C%20Licorer%C3%ADa*%2C%20%0A%0ADeseo%20adquirir%20los%20siguientes%20productos%3A%0A%0A${encodeURIComponent(
+                href={`https://api.whatsapp.com/send?phone=51953553635&text=Buen%20d%C3%ADa%2C%20*Delirio%20%7C%20Licorer%C3%ADa*%2C%20%0A%0ADeseo%20adquirir%20los%20siguientes%20productos%3A%0A%0A${encodeURIComponent(
                   message
                 )}`}
                 leftIcon={

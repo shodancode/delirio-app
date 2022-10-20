@@ -18,7 +18,7 @@ interface Props {
 const IndexRoute: React.FC<Props> = ({ products, fields }) => {
   return (
     <Layout title={"Ron"}>
-      <Hero />
+      
       <CartProvider fields={fields}>
         <StoreScreen
           fields={fields}
