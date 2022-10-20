@@ -6,6 +6,8 @@ import {
   Text,
   Image,
   useColorModeValue,
+  useToast,
+  Box,
 } from "@chakra-ui/react";
 
 import { parseCurrency } from "../../utils/currency";
@@ -32,6 +34,7 @@ const ProductCard: React.FC<Props> = ({ product, onAdd }) => {
   if (!productos) {
     return <div>productos no encontrados</div>;
   }
+  const toast = useToast();
 
   // funcion para agregar al carrito
   // donde enviamos a guardar en nuestra variable de estado global
@@ -88,25 +91,25 @@ const ProductCard: React.FC<Props> = ({ product, onAdd }) => {
               <Text color="teal.500" fontSize="sm" fontWeight="500">
                 {parseCurrency(product.price)}
               </Text>
-
-              <Button size="xs" colorScheme={"teal"} onClick={addToCartHandler}>
-                Agregar
-              </Button>
+              <Box
+                onClick={() =>
+                  toast({
+                    status: "success",
+                    position: "bottom",
+                    title: "Se agrego al carrito",
+                    duration: 2000,
+                    isClosable: true,
+                  })
+                }
+              >
+                <Button size="xs" colorScheme={"teal"} onClick={addToCartHandler}>
+                  Agregar
+                </Button>
+              </Box>
             </Stack>
           </Stack>
         </Stack>
       </Stack>
-      {isModalOpen && (
-        <CartItemDrawer
-          isOpen
-          item={cartItem}
-          onClose={() => toggleModal(false)}
-          onSubmit={(item: CartItem) => {
-            onAdd(item);
-            toggleModal(false);
-          }}
-        />
-      )}
     </>
   );
 };
