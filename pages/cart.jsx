@@ -55,7 +55,7 @@ export default function Cart() {
 
   return (
     <Layout title={"Carrito de Compra"}>
-      <Stack spacing={8} mt={55} minH={"92vh"}>
+      <Stack spacing={8} mt="2" minH={"92vh"}>
         <Heading textAlign={"center"} size="lg">
           Carrito de compras
         </Heading>
