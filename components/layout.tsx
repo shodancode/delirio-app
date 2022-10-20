@@ -32,7 +32,7 @@ export default function Layout({ title, children }) {
 
       <Navbar />
 
-      <Container borderRadius="sm" maxWidth="container.xl" mt={45} padding={4}>
+      <Container borderRadius="sm" maxWidth="container.xl" mt={50} padding={4}>
         <>{children}</>
       </Container>
 
