@@ -159,6 +159,7 @@ export default function Cart() {
                 }
                 size="lg"
                 width="100%"
+                mb="4"
               >
                 Completar pedido
               </Button>
