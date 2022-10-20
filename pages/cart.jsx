@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useContext } from "react";
 import NextLink from "next/link";
 import {
@@ -8,7 +7,7 @@ import {
   Text,
   Select,
   Thead,
-  TableCaption,
+  useToast,
   TableContainer,
   Link,
   Table,
@@ -29,7 +28,7 @@ export default function Cart() {
   const {
     cart: { cartItems },
   } = state;
-
+  const toast = useToast();
   const message = cartItems
     .reduce(
       (message, product) =>
@@ -93,13 +92,10 @@ export default function Cart() {
                       <Image
                         borderRadius="md"
                         src={item.image}
-                        width={70}
-                        height={70}
+                        width={65}
+                        height={65}
                         alt={item.title}
                       />
-                      <Text textAlign={"center"} mt={2} fontSize={"15px"}>
-                        {item.category}
-                      </Text>
                     </Td>
 
                     <Td>
@@ -120,12 +116,24 @@ export default function Cart() {
 
                     <Td>{parseCurrency(item.price)}</Td>
                     <Td>
-                      <Button
-                        colorScheme={"teal"}
-                        onClick={() => removeCartHandler(item)}
+                      <Box
+                        onClick={() =>
+                          toast({
+                            status: "error",
+                            position: "bottom",
+                            title: "Se elimino del carrito",
+                            duration: 1500,
+                            isClosable: true,
+                          })
+                        }
                       >
-                        <DeleteIcon />
-                      </Button>
+                        <Button
+                          colorScheme={"teal"}
+                          onClick={() => removeCartHandler(item)}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      </Box>
                     </Td>
                   </Tr>
                 ))}

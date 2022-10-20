@@ -59,8 +59,7 @@ function hero() {
                 textAlign={{ base: "center", sm: "left" }}
               >
                 <Stack spacing={0}>
-                  <Heading>{INFORMATION.title}</Heading>
-                  <Text fontWeight="500">
+                  <Text fontSize={18} fontWeight="400">
                     {INFORMATION.description}
                   </Text>
                 </Stack>

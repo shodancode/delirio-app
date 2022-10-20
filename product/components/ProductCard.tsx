@@ -97,7 +97,7 @@ const ProductCard: React.FC<Props> = ({ product, onAdd }) => {
                     status: "success",
                     position: "bottom",
                     title: "Se agrego al carrito",
-                    duration: 2000,
+                    duration: 1500,
                     isClosable: true,
                   })
                 }
